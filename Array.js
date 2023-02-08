@@ -199,7 +199,166 @@ function task31 (array) {
 }
 
 function task32 (array) {
-
+    let totalCount = 1
+    let count = 0
+    let elem
+    for (let i=0; i<array.length; i++)
+    {
+        for (let j=i; j<array.length; j++)
+        {
+            if (array[i] === array[j]) count++;
+            if (totalCount<count)
+            {
+                totalCount=count;
+                elem = array[i];
+            }
+        }
+        count=0;
+    }
+    return `${elem} - ${totalCount} times`
 }
 
-console.log(task31([]))
+function task34 (startYear, endYear) {
+    const allYears = [];
+    let result = [];
+    for (let i = startYear; i <= endYear; i++) {
+            allYears.push(i);
+    }
+
+    allYears.forEach(year => {
+        if ((year % 4 === 0 && year % 100 !== 0) || (year % 100 === 0 && year % 400 === 0))
+            result.push(year);
+    });
+
+    return result;
+}
+
+function task35 (number, value) {
+    let arr = []
+    for (let i=0; i<number; i++) {
+        arr.push(value)
+    }
+    return arr
+}
+
+function task36 (first, second) {
+    return JSON.stringify(first) === JSON.stringify(second);
+}
+
+function task37 (array) {
+    return array.flat(Infinity)
+}
+
+function task38 (array, size) {
+    let result = [];
+    let index = 0;
+    while (index < array.length) {
+        result.push(array.slice(index, size + index));
+        index += size;
+    }
+    return result;
+}
+
+function task39 (array) {
+    return array.reduce(function(sum, elem) {return sum + elem;}, 0)/array.length;
+}
+
+function task40 (array) {
+    let max = array.indexOf(Math.max(...array))
+    let min = array.indexOf(Math.min(...array))
+    return (max>min)?max-min-1:min-max-1
+}
+
+function task41 (array1, array2) {
+    return (array1.length > array2.length)
+}
+
+function task42 (array, element) {
+    return array.indexOf(element) !== -1
+}
+
+function task43 (array, A) {
+    return array.map(x => x - A)
+}
+
+function task44 (array) {
+    return array.reduce((sum, elem) => {return sum + elem;}, 0)
+}
+
+function task45 (array, m) {
+    return array.reduce((sum, elem) => {return sum + elem;}, 0)>m
+}
+
+function task46 (array) {
+    let averageGirls = array.filter(item => item>0).reduce((sum, elem) => {return sum + elem;}, 0)/array.filter(item => item>0).length
+    let averageBoys = array.filter(item => item<0).reduce((sum, elem) => {return sum + Math.abs(elem)}, 0)/array.filter(item => item<0).length
+    return `Average girls - ${averageGirls}, average boys - ${averageBoys}`
+}
+
+function task47 (array) {
+    let arr=array.slice(0, 3)
+    return arr.concat(array.slice(17,20))
+}
+
+function task48 (array) {
+    let max=Math.max(...array)
+    array.splice(array.indexOf(max), 1)
+    return array
+}
+
+function task49 (array) {
+    let newArr=[]
+    let sumArr=[]
+    let nameArray=[]
+    array.forEach( elem => {
+            newArr.push(elem.split(" | "))
+        }
+    )
+    newArr.forEach(elem => {
+        nameArray.push(elem[0].substring(2))
+        sumArr.push(+elem[1])
+    })
+
+    return `${nameArray.join(',')} = ${sumArr.reduce((sum, elem) => {return sum + elem;}, 0)}`
+}
+
+function task50 (array) {
+    let nameArr=[]
+    let sumArr=[]
+    for (let i=0; i<array.length; i+=2){
+        nameArr.push(array[i])
+    }
+    for (let i=1; i<array.length; i+=2){
+        sumArr.push(array[i])
+    }
+    return `You purchased ${nameArr.join(', ')} for a total sum of ${sumArr.reduce((sum, elem) => {return sum + elem;}, 0)}`
+}
+
+function task51 (array) {
+    let newArray=[]
+    let newArray2=[]
+    let result = []
+    array.forEach(item => {
+        newArray.push(item.split('@'))
+    })
+    newArray.forEach( item => {
+        item[1]=item[1].split('.')
+    })
+    newArray.forEach(item => {
+        newArray2.push(item[1].map(x=> x[0]).join(''))
+    })
+    for (let i=0; i<newArray.length; i++) {
+       result.push(newArray[i][0]+"."+newArray2[i])
+    }
+    return result
+}
+
+function task52 (array) {
+    let str = array.shift()
+    array.forEach(
+        item => {str = str.replace(item, "-".repeat(item.length))}
+    )
+    return str
+}
+
+console.log(task52(['roses are red, violets are blue', ', violets are', ' red']))
